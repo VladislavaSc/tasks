@@ -15,6 +15,42 @@ class Product:
     @property
     def count(self):
         return self.__count
+    
+    
+    class Category:
+
+    def __init__(self, name, products):
+        self.name = name
+        self.__products = products
+        self.__is_active = True
+
+    @property
+    def is_active(self):
+        return self.__is_active
+
+    @property
+    def products(self):
+        return self.__products
+
+    def remove(self, product_index):
+        del self.__products[product_index]
+
+    def __add__(self, product_item):
+        self.__products.append(product_item)
+
+
+class Store:
+
+    def __init__(self, categories):
+        self.__categories = categories
+
+    @property
+    def categories(self):
+        tmp = []
+        for cat in self.__categories:
+            if cat.is_active:
+                tmp.append(cat)
+        return tmp
 
 
 if __name__ == '__main__':
@@ -30,6 +66,19 @@ if __name__ == '__main__':
     product.sale(1)
     assert product.count == 9
 
-#TestCase#3 Replenish the warehouse
+# TestCase#3 Replenish the warehouse
     product.fill(1)
     assert product.count == 10
+        category = Category('Chairs', [product])
+
+# TestCase#4 Category creation
+    assert category.name == 'Chairs'
+    assert category.products == [product]
+
+# TestCase#5 Product removal
+    category.remove(0)
+    assert category.products == []
+
+# TestCase#6 Adding a product
+    category + product      # category.add(product)
+    assert category.products == [product]
