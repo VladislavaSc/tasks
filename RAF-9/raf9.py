@@ -10,7 +10,8 @@ class Raf9:
                 print('All the best, come again!')
                 break
             elif command == '1':
-                pass
+                current_ints = self.choose_ingredients()
+                print(current_ints)
             else:
                 print('I dont know this command')
 
