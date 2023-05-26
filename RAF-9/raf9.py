@@ -4,6 +4,7 @@ import json
 class Raf9:
     def __init__(self):
         self.ingredients = ['lemon', 'mint', 'ice', 'soda', 'orange', 'tomato']
+        self.get_cocktails_from_db()
 
     def __call__(self, *args, **kwargs):
         while True:
@@ -14,10 +15,10 @@ class Raf9:
                 break
             elif command == '1':
                 current_ints = self.choose_ingredients()
-                self.find_cocktail(current_ints)
+                chose_cocktail = self.find_cocktail(current_ints)
+                print(chose_cocktail)
             else:
                 print('I dont know this command')
-
 
     def __help_text(self):
         print('Commands available: ')
@@ -25,11 +26,17 @@ class Raf9:
         print('0 - exit')
 
     def get_cocktails_from_db(self):
-        with open('cocktail.json', r) as json_file:
+        with open('cocktail.json', 'r') as json_file:
             self.cocktails = json.load(json_file)
 
     def find_cocktail(self, current_ings):
-        pass
+        for c in self.cocktails:
+            print(c.get('ingredients'))
+            print(current_ings)
+            if c.get('ingredients') == current_ings:
+                return c.get('name')
+
+            return None
 
     def choose_ingredients(self):
         choose_ings = []
@@ -55,6 +62,7 @@ class Raf9:
                         choose_ings.append(self.ingredients[number-1])
                 else:
                     print('Enter ingredient number')
+
 
 if __name__ == '__main__':
     raf9 = Raf9()
