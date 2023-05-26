@@ -81,3 +81,5 @@ if __name__ == '__main__':
     # raf9()
 
     assert 'mojito' == raf9.find_cocktail(["ice", "soda", "mint"])
+
+    
