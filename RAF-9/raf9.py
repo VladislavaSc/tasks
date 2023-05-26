@@ -16,7 +16,10 @@ class Raf9:
             elif command == '1':
                 current_ints = self.choose_ingredients()
                 chose_cocktail = self.find_cocktail(current_ints)
-                print(chose_cocktail)
+                if chose_cocktail is None:
+                    self.save_cocktail()
+                else:
+                    print(f'You chose {chose_cocktail} cocktail')
             else:
                 print('I dont know this command')
 
@@ -24,6 +27,15 @@ class Raf9:
         print('Commands available: ')
         print('1 - choose ingredients')
         print('0 - exit')
+
+    def save_cocktail(self, current_ings):
+        self.cocktails.append({
+            "name": "unnamed",
+            "ingredients": current_ings
+        })
+
+        with open('cocktails.json', 'w') as json_file:
+            json.dump(self.cocktails, json_file)
 
     def get_cocktails_from_db(self):
         with open('cocktail.json', 'r') as json_file:
