@@ -43,8 +43,8 @@ class Raf9:
 
     def find_cocktail(self, current_ings):
         for c in self.cocktails:
-            print(c.get('ingredients'))
-            print(current_ings)
+            # print(c.get('ingredients'))
+            # print(current_ings)
             if c.get('ingredients') == current_ings:
                 return c.get('name')
 
