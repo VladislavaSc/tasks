@@ -1,3 +1,6 @@
+import json
+
+
 class Raf9:
     def __init__(self):
         self.ingredients = ['lemon', 'mint', 'ice', 'soda', 'orange', 'tomato']
@@ -11,7 +14,7 @@ class Raf9:
                 break
             elif command == '1':
                 current_ints = self.choose_ingredients()
-                print(current_ints)
+                self.find_cocktail(current_ints)
             else:
                 print('I dont know this command')
 
@@ -20,6 +23,13 @@ class Raf9:
         print('Commands available: ')
         print('1 - choose ingredients')
         print('0 - exit')
+
+    def get_cocktails_from_db(self):
+        with open('cocktail.json', r) as json_file:
+            self.cocktails = json.load(json_file)
+
+    def find_cocktail(self, current_ings):
+        pass
 
     def choose_ingredients(self):
         choose_ings = []
