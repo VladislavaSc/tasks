@@ -23,3 +23,12 @@ class Order:
             print('Processing debit payment type')
             print(f'Security code check: {security_code}')
             self.status = 'paid'
+
+order = Order()
+order.add_item('Keyboard', 1, 2500)
+order.add_item('SSD', 1, 7500)
+order.add_item('USB', 2, 250)
+
+print(order.total_price())
+order.pay('debit', '0372846')
+order.pay('credit', '7383903')
