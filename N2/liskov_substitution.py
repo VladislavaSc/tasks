@@ -49,6 +49,13 @@ class CreditPaymentProcessor(PaymentProcessor):
         print(f'Security code check: {security_code}')
         order.status = 'paid'
 
+class PaypalPaymentProcessor(PaymentProcessor):
+
+    def pay(self, order, payment_type, security_code):
+        print('Processing PayPal payment type')
+        print(f'Security E-Mail: {security_code}')
+        order.status = 'paid'
+
 
 order = Order()
 order.add_item('Keyboard', 1, 2500)
@@ -61,3 +68,6 @@ debit_processor.pay_debit(order, '0372846')
 
 credit_processor = CreditPaymentProcessor
 credit_processor.pay_debit(order, '0372846')
+
+credit_processor = PaypalPaymentProcessor
+credit_processor.pay_debit(order, 'some@mail.com')

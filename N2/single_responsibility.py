@@ -20,7 +20,7 @@ class Order:
             print(f'Security code check: {security_code}')
             self.status = 'paid'
         elif payment_type == 'credit':
-            print('Processing debit payment type')
+            print('Processing credit payment type')
             print(f'Security code check: {security_code}')
             self.status = 'paid'
 
@@ -33,7 +33,7 @@ class PaymentProcessor:
         order.status = 'paid'
 
     def pay_credit(self, order, payment_type, security_code):
-        print('Processing debit payment type')
+        print('Processing credit payment type')
         print(f'Security code check: {security_code}')
         order.status = 'paid'
 
