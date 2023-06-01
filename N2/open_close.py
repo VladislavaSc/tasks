@@ -37,14 +37,14 @@ class PaymentProcessor(ABC):
 
 class DebitPaymentProcessor(PaymentProcessor):
 
-    def pay(self, order, payment_type, security_code):
+    def pay(self, order, security_code):
         print('Processing debit payment type')
         print(f'Security code check: {security_code}')
         order.status = 'paid'
 
 
 class CreditPaymentProcessor(PaymentProcessor):
-    def pay(self, order, payment_type, security_code):
+    def pay(self, order, security_code):
         print('Processing credit payment type')
         print(f'Security code check: {security_code}')
         order.status = 'paid'
